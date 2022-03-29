@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block title %}
+        {% if title %}
+          <title>Flask - {{ title }}</title>
+        {% else %}
+          <title>Flask Blog</title>
+        {% endif %}
+    {% endblock title %}
+
+</head>
+<body>
+<div class="wrapper">
+
+{% block menu %}
+
+{% endblock menu %}
+
+
+{% block content %}
+
+{% endblock content %}
+
+
+
+{% block main_page %}
+
+{% endblock main_page %}
+
+
+
+{% block footer %}
+
+{% endblock footer %}
+</div>
+</body>
+</html>
