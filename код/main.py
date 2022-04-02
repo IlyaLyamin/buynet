@@ -22,7 +22,7 @@ def load_user(user_id):
 
 @app.route('/authorization')
 def authorization():
-    return render_template('authorization.html')
+    return render_template('authorization.html', title='Войти')
 
 
 @app.route('/')
@@ -31,6 +31,21 @@ def home():
     db_sess = db_session.create_session()
     products = db_sess.query(Products).all()
     return render_template('index.html', title='Главная', products=products)
+
+
+@app.route('/account')
+def account():
+    return render_template('account.html', title='Акаунт')
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html', title='Регистрация')
+
+
+@app.route('/sell_product')
+def sell_product():
+    return render_template('sell_product.html', title='Объявление')
 
 
 def main():

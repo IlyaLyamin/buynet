@@ -18,9 +18,9 @@
 
     {% block title %}
         {% if title %}
-          <title>Flask - {{ title }}</title>
+          <title>{{ title }}</title>
         {% else %}
-          <title>Flask Blog</title>
+          <title>Buynet</title>
         {% endif %}
     {% endblock title %}
 
@@ -35,16 +35,16 @@
     </div>
     {% if current_user.is_authenticated%}
     <ul class="main_menu">
-        <li><a href="#"><p>Главная</p></a></li>
-        <li><a href="#"><p>Аккаунт</p></a></li>
-        <li><a href="#"><p>Продать</p></a></li>
+        <li><a href="{{url_for('home')}}"><p>Главная</p></a></li>
+        <li><a href="{{url_for('account')}}"><p>Аккаунт</p></a></li>
+        <li><a href="{{url_for('sell_product')}}"><p>Продать</p></a></li>
         <li><a href="#"><p>Выход</p></a></li>
     </ul>
     {% else %}
     <ul class="main_menu">
-        <li><a href="#"><p>Главная</p></a></li>
-        <li><a href="#"><p>Регистрация</p></a></li>
-        <li><a href="#"><p>Логин</p></a></li>
+        <li><a href="{{url_for('home')}}"><p>Главная</p></a></li>
+        <li><a href="{{url_for('register')}}"><p>Регистрация</p></a></li>
+        <li><a href="{{url_for('authorization')}}"><p>Войти</p></a></li>
     </ul>
     {% endif %}
 
