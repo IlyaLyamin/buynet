@@ -1,7 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap reboot (для сброса стилей) -->
+	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<!-- Шрифты с Google Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     {% block title %}
@@ -18,16 +30,23 @@
 
 {% block menu %}
 <header class="header">
-
+    <div class="logo">
+        <img src="{{ url_for('static', filename='img/корзина.jpg')}}" alt="logo">
+    </div>
+    {% if current_user.is_authenticated%}
     <ul class="main_menu">
         <li><a href="#"><p>Главная</p></a></li>
-        <li><a href="#"><p>Блог</p></a></li>
-        <li><a href="#"><p>Регистрация</p></a></li>
-        <li><a href="#"><p>Логин</p></a></li>
         <li><a href="#"><p>Аккаунт</p></a></li>
-        <li><a href="#"><p>Создать</p></a></li>
+        <li><a href="#"><p>Продать</p></a></li>
         <li><a href="#"><p>Выход</p></a></li>
     </ul>
+    {% else %}
+    <ul class="main_menu">
+        <li><a href="#"><p>Главная</p></a></li>
+        <li><a href="#"><p>Регистрация</p></a></li>
+        <li><a href="#"><p>Логин</p></a></li>
+    </ul>
+    {% endif %}
 
 </header>
 {% endblock menu %}

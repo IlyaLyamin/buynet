@@ -1,6 +1,38 @@
 {% extends 'layout.html' %}
 
-
 {% block content %}
+<body>
+    <h1 class="content">
+      <p>Лента товаров</p>
+    </h1>
+    <div class="container mt-5">
+        <div class="row">
+            {% for i in products %}
+            <div class="col-md-4">
+                <div class="product">
+                    <div class="image">
+                        <img src="{{url_for('static', filename='img/104273.jpg')}}">
+                    </div>
+                    <!-- image -->
 
+                    <div class="info">
+                        <h3>{{i.product}}</h3>
+
+                        <div class="info-price">
+                            <span class="price">{{i.price}}<smal>рублей</smal></span>
+                            <button class="buy"><ion-icon name="cart-outline"></ion-icon></button>
+                        </div>
+                    </div>
+                    <!-- info-->
+                </div>
+                <!-- product -->
+            </div>
+            <!-- col-md-4 -->
+            {% endfor %}
+        </div>
+        <!-- row -->
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
 {% endblock content %}
