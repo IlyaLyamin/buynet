@@ -14,5 +14,6 @@ class Products(SqlAlchemyBase, UserMixin, SerializerMixin):
     price = sqlalchemy.Column(sqlalchemy.Integer)
     photo = sqlalchemy.Column(sqlalchemy.BLOB, default=None)
     is_active = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
+    about = sqlalchemy.Column(sqlalchemy.String, default='Без описания')
 
     user = orm.relation('User')
