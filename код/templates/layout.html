@@ -34,11 +34,19 @@
         <img src="{{ url_for('static', filename='img/корзина.jpg')}}" alt="logo">
     </div>
     {% if current_user.is_authenticated%}
+    <div id="zatemnenie">
+      <div id="okno">
+          Вы хотите покинуть свой аккаунт ?<br>
+        <a href="{{url_for('logout')}}" class="close">Да</a>
+        <a href="{{url_for('home')}}" class="close">Нет</a>
+      </div>
+    </div>
+
     <ul class="main_menu">
         <li><a href="{{url_for('home')}}"><p>Главная</p></a></li>
         <li><a href="{{url_for('account')}}"><p>Аккаунт</p></a></li>
         <li><a href="{{url_for('sell_product')}}"><p>Продать</p></a></li>
-        <li><a href="#"><p>Выход</p></a></li>
+        <li><a href="#zatemnenie"><p>Выход</p></a></li>
     </ul>
     {% else %}
     <ul class="main_menu">

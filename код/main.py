@@ -1,10 +1,14 @@
 from flask import Flask, redirect, render_template, request, abort, jsonify
 from flask import make_response
+
 from data import db_session
 from data.products import Products
 from data.users import User
+
 from forms.register_form import RegisterForm
-from flask_login import LoginManager, login_user, login_required, current_user
+from forms.authorization_form import AuthorizationForm as AutoForm
+
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 
 app = Flask(__name__)
@@ -27,15 +31,27 @@ def not_found(error):
 ########################################################
 
 
-@app.route('/authorization')
+@app.route('/authorization', methods=['GET', 'POST'])
 def authorization():
-    return render_template('authorization.html', title='Войти')
+    form = AutoForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email == form.email_f.data).first()
+        pas = db_sess.query(User).filter(User.password == form.password_f.data).first()
+
+        if user and pas:
+            print(1)
+            login_user(user, remember=form.remember_me.data)
+            return redirect('/')
+        else:
+            return render_template('authorization.html', message='Неправильный логин или пароль',
+                                   form=form, title='Войти')
+    return render_template('authorization.html', title='Войти', form=form)
 
 
 @app.route('/')
 @app.route('/index')
 def home():
-    print('home')
     db_sess = db_session.create_session()
     products = db_sess.query(Products).all()
     return render_template('index.html', title='Главная', products=products)
@@ -49,14 +65,11 @@ def account():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    print(0)
     if form.validate_on_submit():
-        print('click')
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email_f.data).first():
             return render_template('register.html', title='Регистрация', form=form,
                                    message='Такой пользователь уже зарегистрирован')
-        print(1)
         user = User()
         user.name = form.name_f.data
         user.surname = form.surname_f.data
@@ -68,6 +81,12 @@ def register():
         db_sess.commit()
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
 
 
 @app.route('/sell_product')

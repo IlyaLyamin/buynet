@@ -83,7 +83,6 @@ html, body{
     font-size: 80px;
     font-family: monospace;
     color: #42aaff;
-    margin-top: 20px;
 }
 
 /* FOOTER */
@@ -212,7 +211,7 @@ html, body{
 .group input {
     margin-top: 0px;
     margin-left: 60px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     border-radius: 20px/20px;
     width: 300px;
     height: 30px;
@@ -236,7 +235,7 @@ html, body{
 }
 
 button {
-    margin-top: -10px;
+    margin-top: 10px;
     background: #C5C6C7;
     height: 50px;
     width: 180px;
@@ -250,3 +249,66 @@ button:hover{
     box-shadow: 15px 15px 30px #AFD275;
     transform: scale(1.06);
 }
+
+.row p {
+    color: black;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+/* Всплывающее окно */
+
+#zatemnenie {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#zatemnenie:target {display: block;}
+
+#okno {
+    width: 500px;
+    height: 100px;
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #0000cc;
+    border-radius: 10px;
+    color: #0000cc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.close {
+    display: inline-block;
+    border: 2px solid #42aaff;
+    border-radius: 20px/20px;
+    width: 100px;
+    color: black;
+    background: #FBEEC1;
+    padding: 0 12px;
+    margin: 20px;
+    text-decoration: none;
+    background: #f2f2f2;
+    font-size: 24px;
+    cursor:pointer;
+    font-weight: 400;
+    box-shadow: 2px 2px 5px black;
+}
+
+.close:hover {
+    background: #FBEEC1;
+    transform: scale(0.95);
+}
+
+/* авторизация */
