@@ -1,10 +1,13 @@
 from flask import Flask, redirect, render_template, request, abort, jsonify
-from flask import make_response
+from flask import make_response, url_for
+
+from utils import save_picture_product
 
 from data import db_session
 from data.products import Products
 from data.users import User
 
+from forms.create_products_form import CreateProductsForm
 from forms.register_form import RegisterForm
 from forms.authorization_form import AuthorizationForm as AutoForm
 
@@ -40,7 +43,6 @@ def authorization():
         pas = db_sess.query(User).filter(User.password == form.password_f.data).first()
 
         if user and pas:
-            print(1)
             login_user(user, remember=form.remember_me.data)
             return redirect('/')
         else:
@@ -89,9 +91,34 @@ def logout():
     return redirect('/')
 
 
-@app.route('/sell_product')
+@app.route('/sell_product', methods=['GET', 'POST'])
 def sell_product():
-    return render_template('sell_product.html', title='Объявление')
+    form = CreateProductsForm()
+    print('Инициализировали окно')
+    if form.validate_on_submit():
+        print('Нажали на кнопку')
+        db_sess = db_session.create_session()
+        product = Products()
+        product.product = form.product_f.data
+        product.author = current_user
+        product.price = form.price_f.data
+        product.photo = form.photo_f.data
+        product.about = form.about_f.data
+        print('Дошли до функции сохранения')
+        photo_file = save_picture_product(form.photo_f.data)
+        print('Сохранили')
+        product.photo = photo_file
+        db_sess.add(product)
+        db_sess.commit()
+        return redirect('/account')
+    # аватарка пользователя
+    print('аватарка пользователя')
+    image_file = url_for('static',
+                         filename='profile_pics/' + current_user.name + '/products_image' +
+                         current_user.photo)
+    print('возврат')
+    return render_template('sell_product.html', title='Объявление',
+                           form=form, image_file=image_file)
 
 
 def main():

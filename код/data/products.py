@@ -9,11 +9,10 @@ class Products(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'products'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    author = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('users.id'))
+    user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('users.id'))
     product = sqlalchemy.Column(sqlalchemy.String, default='без названия')
     price = sqlalchemy.Column(sqlalchemy.Integer)
-    photo = sqlalchemy.Column(sqlalchemy.BLOB, default=None)
-    is_active = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
-    about = sqlalchemy.Column(sqlalchemy.String, default='Без описания')
+    photo = sqlalchemy.Column(sqlalchemy.String, default='default.jpg')
+    about = sqlalchemy.Column(sqlalchemy.Text, default='Без описания')
 
-    user = orm.relation('User')
+    author = orm.relation('User')
