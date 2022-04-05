@@ -56,6 +56,11 @@ def authorization():
 def home():
     db_sess = db_session.create_session()
     products = db_sess.query(Products).all()
+    if products:
+        print('yes')
+        print(products[0].author)
+    else:
+        print('no')
     return render_template('index.html', title='Главная', products=products)
 
 
@@ -100,17 +105,18 @@ def sell_product():
         db_sess = db_session.create_session()
         product = Products()
         product.product = form.product_f.data
-        product.author = current_user
         product.price = form.price_f.data
         product.photo = form.photo_f.data
         product.about = form.about_f.data
+        product.user_id = current_user.id
         print('Дошли до функции сохранения')
+        print(form.photo_f.data)
         photo_file = save_picture_product(form.photo_f.data)
         print('Сохранили')
         product.photo = photo_file
         db_sess.add(product)
         db_sess.commit()
-        return redirect('/account')
+        return redirect('/')
     # аватарка пользователя
     print('аватарка пользователя')
     image_file = url_for('static',

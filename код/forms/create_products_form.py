@@ -8,5 +8,5 @@ class CreateProductsForm(FlaskForm):
     product_f = StringField('Название товара', validators=[DataRequired()])
     price_f = StringField('Цена', validators=[DataRequired()])
     photo_f = FileField('Изображение (png, jpg)', validators=[FileAllowed(['png', 'jpg'])])
-    about_f = TextAreaField('Описание', validators=[DataRequired()])
+    about_f = TextAreaField('Описание')
     submit = SubmitField('Опубликовать')
