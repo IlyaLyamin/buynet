@@ -1,38 +1,71 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<body>
-    <h1 class="content">
-      <p>Лента товаров</p>
-    </h1>
-    <div class="container mt-5">
-        <div class="row">
-            {% for i in products %}
-            <div class="col-md-4">
-                <div class="product">
-                    <div class="image">
-                        <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
+<h1 class="content">
+  <p>Лента товаров</p>
+</h1>
+<div class="container mt-5">
+    <div class="row">
+        {% for i in products %}
+            <div class="product">
+                {% if i.author.photo != 'default.jpg' %}
+                    <div class="short_user">
+                        <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}"
+                        alt="" style="width:100px;">
+                        <ul>
+                            <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
+                            <li><label>Почта - {{ i.author.email }}</label></li>
+                        </ul>
                     </div>
-                    <!-- image -->
-
-                    <div class="info">
-                        <h3>{{i.product}}</h3>
-
-                        <div class="info-price">
-                            <span class="price">{{i.price}}<smal>рублей</smal></span>
-                            <button class="buy"><ion-icon name="cart-outline"></ion-icon></button>
+                {% else %}
+                    <div class="short_user">
+                        <img src="{{url_for('static', filename='img/аккаунт_по_умолчанию.jpg')}}"
+                        alt="" style="width:100px;">
+                        <ul>
+                            <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
+                            <li><label>Почта - {{ i.author.email }}</label></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if current_user.id == i.author.id %}
+                    <div id="zatemnenie_1">
+                        <div id="okno">
+                            Вы хотите удалить объявление '{{ i.product }}'?<br>
+                            <a href="/delete_product/{{ i.id }}" class="close">Да</a>
+                            <a href="{{url_for('home')}}" class="close">Нет</a>
                         </div>
                     </div>
-                    <!-- info-->
+                    <div class="info">
+                        <h3>{{i.product}}</h3>
+                        <a href="/edit_product/{{ i.id }}"><button>Изменить</button></a>
+                        <a href="#zatemnenie_1"><button>Удалить</button></a>
+                    </div>
+                {% endif %}
+                <div class="image">
+                    <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
                 </div>
-                <!-- product -->
+                <!-- image -->
+                {% if current_user.is_authenticated %}
+                    <div class="info-price">
+                        <span class="price">{{i.price}} <smal>рублей</smal></span>
+                        <a href="#"><button class="buy"><ion-icon name="cart-outline"></ion-icon></button></a>
+                    </div>
+                {% else %}
+                    <div class="info-price">
+                        <span class="price">{{i.price}} <smal>рублей</smal></span>
+                    </div>
+                {% endif %}
+                <div class="about">
+                    <h1>Описание:</h1><br>
+                    <h2>{{ i.about }} </h2>
+                </div>
+                <!-- info-->
             </div>
-            <!-- col-md-4 -->
-            {% endfor %}
-        </div>
-        <!-- row -->
+            <!-- product -->
+        {% endfor %}
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+    <!-- row -->
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock content %}

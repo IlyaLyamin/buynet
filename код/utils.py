@@ -17,7 +17,7 @@ def save_picture_product(form_picture):
     if not os.path.isdir(full_path): #
         os.makedirs(full_path) #
     picture_path = os.path.join(full_path, picture_fn) #
-    output_size = (300, 400) #
+    output_size = (330, 700) #
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)

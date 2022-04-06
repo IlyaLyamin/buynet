@@ -1,7 +1,7 @@
 {% extends 'layout.html'%}
 
 {% block content %}
-<div class="advertisement" xmlns="http://www.w3.org/1999/html">
+<div class="advertisement" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
             <form action="" method="POST" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 <h2>Публицация</h2>
@@ -15,7 +15,7 @@
                         {% endfor %}
                     </div>
                     <div class="group">
-                        <lable for=''>Описание</lable><br>
+                        <lable for=''>Описание<small> (До 130 символов)</small></lable><br>
                         {{ form.about_f(class="form-control") }}<br>
                         {% for error in form.about_f.errors %}
                             <div class="alert alert-danger" role="alert">
@@ -26,6 +26,11 @@
                     <div class="group">
                         <lable for=''>Прикрепите фото</lable><br>
                         {{ form.photo_f }}
+                        {% for error in form.photo_f.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
                     </div>
                     <div class="group">
                         <lable for=''>Цена</lable><br>

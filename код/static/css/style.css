@@ -99,70 +99,6 @@ html, body{
     flex: 0 0 auto;
 }
 
-.container {
-    max-width: 1560px;
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col-md-4 {
-
-}
-
-.product {
-    margin: 30px;
-    outline: 5px #41B3A3 solid;
-    background-color: #41B3A3;
-    max-width: 250px;
-}
-
-.image img {
-    height: 350px;
-    width: 100%;
-    object-fit: cover;
-}
-
-.image {
-    margin-bottom: 10px;
-}
-
-.info h3{
-    font-size: 21px;
-    font-weight: 100;
-    margin-bottom: 0px;
-}
-
-.info-price {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.buy {
-    border: none;
-    width: 40px;
-    height: 40px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.price {
-    font-weight: 700;
-    font-size: 18px;
-}
-
 /* register */
 
 .register {
@@ -270,6 +206,18 @@ button:hover{
 
 #zatemnenie:target {display: block;}
 
+#zatemnenie_1 {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#zatemnenie_1:target {display: block;}
+
 #okno {
     width: 500px;
     height: 100px;
@@ -311,4 +259,133 @@ button:hover{
     transform: scale(0.95);
 }
 
-/* авторизация */
+/* Лента товаров */
+
+.container {
+    max-width: 1560px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    margin: 30px;
+    outline: 5px #41B3A3 solid;
+    background-color: #41B3A3;
+    width: 700px;
+    height: 750px;
+    border-radius: 20px/20px;
+}
+
+.image img {
+    height: 350px;
+    width: 98%;
+    object-fit: cover;
+    margin-top: 20px;
+    margin-left: 7px;
+    outline: 5px green solid;
+    border-radius: 10px/10px;
+}
+
+.image {
+    margin-bottom: 10px;
+}
+
+.info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.info button {
+    background: green;
+    margin-top: 25px;
+}
+
+.info h3{
+    font-size: 42px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    color: blue;
+}
+
+.info-price {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buy {
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 28px;
+    color: blue;
+    margin-left: 10px;
+}
+
+/* short_user */
+
+.short_user {
+    display: flex;
+}
+
+.short_user img {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px/20px;
+    outline: 4px gray solid;
+}
+
+.short_user ul {
+    margin-top: 18px;
+}
+
+.short_user li {
+    list-style: none;
+    margin-top: 7px;
+}
+
+.short_user label {
+    font-size: 26px;
+    font-weight: 500;
+}
+/* описание */
+
+.about {
+    margin-left: 15px;
+}
+
+.about h1 {
+    font-size: 25px;
+}
+
+.about h2 {
+    margin-top: -20px;
+    margin-left: 20px;
+    font-size: 20px;
+    word-break:break-all;
+}
+
+
+130 максимум

@@ -56,11 +56,6 @@ def authorization():
 def home():
     db_sess = db_session.create_session()
     products = db_sess.query(Products).all()
-    if products:
-        print('yes')
-        print(products[0].author)
-    else:
-        print('no')
     return render_template('index.html', title='Главная', products=products)
 
 
@@ -97,6 +92,7 @@ def logout():
 
 
 @app.route('/sell_product', methods=['GET', 'POST'])
+@login_required
 def sell_product():
     form = CreateProductsForm()
     print('Инициализировали окно')
@@ -125,6 +121,52 @@ def sell_product():
     print('возврат')
     return render_template('sell_product.html', title='Объявление',
                            form=form, image_file=image_file)
+
+
+@app.route('/delete_product/<int:id>', methods=['GET', 'POST'])
+@login_required
+def poduct_delete(id):
+    db_sess = db_session.create_session()
+    product = db_sess.query(Products).filter(Products.id == id).first()
+    if product:
+        db_sess.delete(product)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
+
+
+@app.route('/edit_product/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_product(id):
+    print(5)
+    form = CreateProductsForm()
+    if request.method == 'GET':
+        db_sess = db_session.create_session()
+        product = db_sess.query(Products).filter(Products.id == id).first()
+        print(product.product)
+        if product:
+            print('Yes')
+            form.product_f.data = product.product
+            form.price_f.data = product.price
+            form.about_f.data = product.about
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        product = db_sess.query(Products).filter(Products.id == id).first()
+        if product:
+            product.product = form.product_f.data
+            product.photo = form.photo_f.data
+            product.price = form.price_f.data
+            product.about = form.about_f.data
+            photo_file = save_picture_product(form.photo_f.data)
+            product.photo = photo_file
+            db_sess.commit()
+            return redirect('/')
+        else:
+            abort(404)
+    return render_template('sell_product.html', title='Редактирование объявления', form=form)
 
 
 def main():

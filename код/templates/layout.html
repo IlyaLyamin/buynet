@@ -33,10 +33,10 @@
     <div class="logo">
         <img src="{{ url_for('static', filename='img/корзина.jpg')}}" alt="logo">
     </div>
-    {% if current_user.is_authenticated%}
+    {% if current_user.is_authenticated %}
     <div id="zatemnenie">
       <div id="okno">
-          Вы хотите покинуть свой аккаунт ?<br>
+          Вы хотите покинуть аккаунт ?<br>
         <a href="{{url_for('logout')}}" class="close">Да</a>
         <a href="{{url_for('home')}}" class="close">Нет</a>
       </div>
