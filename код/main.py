@@ -13,11 +13,28 @@ from forms.authorization_form import AuthorizationForm as AutoForm
 
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
+# оплата
+from cloudipsp import Api, Checkout
 
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+
+@app.route('/buy/<int:id>')
+def buy(id):
+    db_sess = db_session.create_session()
+    product = db_sess.query(Products).get(id)
+    api = Api(merchant_id=1396424,
+              secret_key='test')
+    checkout = Checkout(api=api)
+    data = {
+        "currency": "RUB",
+        "amount": int(''.join(product.price.split(' ')))
+    }
+    url = checkout.url(data).get('checkout_url')
+    return redirect(url)
 
 
 @login_manager.user_loader

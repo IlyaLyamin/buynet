@@ -45,10 +45,10 @@
                     <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
                 </div>
                 <!-- image -->
-                {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated and current_user.id != i.author.id %}
                     <div class="info-price">
                         <span class="price">{{i.price}} <smal>рублей</smal></span>
-                        <a href="#"><button class="buy"><ion-icon name="cart-outline"></ion-icon></button></a>
+                        <a href="/buy/{{ i.id }}"><button class="buy"><ion-icon name="cart-outline"></ion-icon></button></a>
                     </div>
                 {% else %}
                     <div class="info-price">
