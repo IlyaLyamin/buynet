@@ -10,7 +10,7 @@
             <div class="product">
                 {% if i.author.photo != 'default.jpg' %}
                     <div class="short_user">
-                        <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}"
+                        <img src="{{ image_file }}"
                         alt="" style="width:100px;">
                         <ul>
                             <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>

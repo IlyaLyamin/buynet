@@ -31,7 +31,7 @@ def buy(id):
     checkout = Checkout(api=api)
     data = {
         "currency": "RUB",
-        "amount": int(''.join(product.price.split(' ')))
+        "amount": int(''.join((product.price + '00').split(' ')))
     }
     url = checkout.url(data).get('checkout_url')
     return redirect(url)
@@ -78,7 +78,10 @@ def home():
 
 @app.route('/account')
 def account():
-    return render_template('account.html', title='Акаунт')
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == current_user.id).first()
+    date = str(user.register_date).split()[0]
+    return render_template('account.html', title='Аккаунт', user=user, date=date)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -112,9 +115,7 @@ def logout():
 @login_required
 def sell_product():
     form = CreateProductsForm()
-    print('Инициализировали окно')
     if form.validate_on_submit():
-        print('Нажали на кнопку')
         db_sess = db_session.create_session()
         product = Products()
         product.product = form.product_f.data
@@ -122,20 +123,15 @@ def sell_product():
         product.photo = form.photo_f.data
         product.about = form.about_f.data
         product.user_id = current_user.id
-        print('Дошли до функции сохранения')
-        print(form.photo_f.data)
         photo_file = save_picture_product(form.photo_f.data)
-        print('Сохранили')
         product.photo = photo_file
         db_sess.add(product)
         db_sess.commit()
         return redirect('/')
     # аватарка пользователя
-    print('аватарка пользователя')
     image_file = url_for('static',
-                         filename='profile_pics/' + current_user.name + '/products_image' +
+                         filename='profile_pics/' + current_user.name + '/account_image' +
                          current_user.photo)
-    print('возврат')
     return render_template('sell_product.html', title='Объявление',
                            form=form, image_file=image_file)
 

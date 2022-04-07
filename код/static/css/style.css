@@ -387,5 +387,31 @@ button:hover{
     word-break:break-all;
 }
 
+/* account */
 
-130 максимум
+.account_img {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.account_img img {
+    border-radius: 150px/150px;
+    outline: 5px solid gray;
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.account_img button {
+    background: blue;
+    color: white;
+    margin-top: 10px;
+    margin-right: 70px;
+    margin-left: 165px;
+}
+
+.account_img p {
+    font-weight: 700;
+    margin-top: 15px;
+    text-align: center;
+}
