@@ -7,14 +7,12 @@
             <img src="{{url_for('static', filename='img/аккаунт_по_умолчанию.jpg')}}">
             <p>Почта - {{ user.email }}</p>
             <p>Зарегистрирован - {{ date }}</p>
-            <a href="#"><button>Редактировать аккаунт</button></a>
+            <a href="/edit_account"><button>Редактировать аккаунт</button></a>
         {% else %}
-            <img src="{{url_for('static',
-                             filename='profile_pics/' + current_user.name + '/account_image' +
-                             current_user.photo)}}">
+            <img src="{{ image_file }}">
             <p>Почта - {{ user.email }}</p>
-            <p>Зарегистрирован - {{ user.register_date.date }}</p>
-            <a href="#"><button>Редактировать аккаунт</button></a>
+            <p>Зарегистрирован - {{ date }}</p>
+            <a href="/edit_account"><button>Редактировать аккаунт</button></a>
         {% endif %}
     </div>
     <hr>
@@ -25,7 +23,7 @@
                     {% if i.author.photo != 'default.jpg' %}
                         <div class="short_user">
                             <img src="{{ image_file }}"
-                            alt="" style="width:100px;">
+                            alt="" style="width:100px; height: 100px;">
                             <ul>
                                 <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
                                 <li><label>Почта - {{ i.author.email }}</label></li>

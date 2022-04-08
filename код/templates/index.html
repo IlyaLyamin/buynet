@@ -8,10 +8,11 @@
     <div class="row">
         {% for i in products %}
             <div class="product">
-                {% if i.author.photo != 'default.jpg' %}
+                {% if i.author.photo != 'default.jpg' and current_user.is_authenticated %}
                     <div class="short_user">
-                        <img src="{{ image_file }}"
-                        alt="" style="width:100px;">
+                        <img src="{{url_for('static',
+                                  filename='img/profile_pics/' + i.author.name + '/account_image/' + i.author.photo)}}"
+                        alt="" style="width:100px; height: 100px;">
                         <ul>
                             <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
                             <li><label>Почта - {{ i.author.email }}</label></li>
@@ -40,6 +41,10 @@
                         <a href="/edit_product/{{ i.id }}"><button>Изменить</button></a>
                         <a href="#zatemnenie_1"><button>Удалить</button></a>
                     </div>
+                {% else %}
+                    <div class="info">
+                        <h3>{{i.product}}</h3>
+                    </div>
                 {% endif %}
                 <div class="image">
                     <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
@@ -66,6 +71,7 @@
     </div>
     <!-- row -->
 </div>
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock content %}

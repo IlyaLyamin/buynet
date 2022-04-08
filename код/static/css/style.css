@@ -398,6 +398,8 @@ button:hover{
 .account_img img {
     border-radius: 150px/150px;
     outline: 5px solid gray;
+    width: 300px;
+    height: 300px;
     margin-top: 30px;
     margin-left: 100px;
 }
@@ -414,4 +416,75 @@ button:hover{
     font-weight: 700;
     margin-top: 15px;
     text-align: center;
+}
+
+/* редактирование аккаунта */
+
+.edit_account {
+    display: flex;
+}
+
+.edit_account form {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background: #41B3A3;
+    max-width: 800px;
+    width: 800px;
+    max-height: 900px;
+    height: 900px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+    border-radius: 10px/10px;
+}
+
+.photo {
+    display: flex;
+    height: 200px;
+}
+
+.photo label {
+    margin-top: 77px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: blue;
+}
+
+.photo input {
+    margin-top: 80px;
+    margin-left: 5px;
+    height: 20px;
+}
+
+.photo img {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 313px;
+    outline: 5px gray solid;
+    border-radius: 150px/150px;
+}
+
+.account_input_label {
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 250px;
+    text-align: center;
+}
+
+.account_input_label label {
+    font-size: 24px;
+    font-weight: 700;
+    color: blue;
+}
+
+.account_input_label input {
+    width: 250px;
+    height: 30px;
+    border-radius: 20px/20px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
 }

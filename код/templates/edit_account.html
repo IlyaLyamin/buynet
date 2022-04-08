@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="edit_account">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {% if form.photo_f.data == 'default.jpg' %}
+            <div class="photo">
+                <img src="{{url_for('static', filename='img/аккаунт_по_умолчанию.jpg')}}">
+                <label>Фото: </label>
+            {{ form.photo_f }}
+            {% for error in form.photo_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="photo">
+                <img src="{{ image_file }}">
+                <label>Фото: </label>
+                {{ form.photo_f }}
+                {% for error in form.photo_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="account_input_label">
+            <label>Имя</label>
+            {{ form.name_f(class='form-control')}}
+            {% for error in form.name_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="account_input_label">
+            <label>Фамилия</label>
+            {{ form.surname_f(class='form-control')}}
+            {% for error in form.surname_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="account_input_label">
+            <label>Возраст</label>
+            {{ form.age_f(class='form-control')}}
+            {% for error in form.age_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="account_input_label">
+            <label>Город</label>
+            {{ form.town_f(class='form-control')}}
+            {% for error in form.town_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="account_input_label">
+            <label>Почта</label>
+            {{ form.email_f(class='form-control')}}
+            {% for error in form.email_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="account_input_label">
+            <label>Пароль</label>
+            {{ form.password_f(class='form-control')}}
+            {% for error in form.password_f.errors %}
+                <div class="alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div><center><button>Обновить</button></center></div>
+    </form>
+</div>
+{% endblock content %}
