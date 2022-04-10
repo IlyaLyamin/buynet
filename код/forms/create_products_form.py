@@ -9,7 +9,6 @@ class CreateProductsForm(FlaskForm):
                             validators=[DataRequired()])
     price_f = StringField('Цена',
                           validators=[DataRequired()])
-    photo_f = FileField('Изображение (png, jpg)',
-                        validators=[FileAllowed(['png', 'jpg']), DataRequired()])
+    photo_f = FileField('Изображение (png, jpg)', default='default.jpg', validators=[FileAllowed(['png', 'jpg'])])
     about_f = StringField('Описание')
     submit = SubmitField('Опубликовать')

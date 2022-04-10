@@ -30,7 +30,6 @@ def save_picture_account(form_picture):
         os.makedirs(full_path)
     picture_path = os.path.join(full_path, picture_fn)
     output_size = (300, 300)
-    print(form_picture)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)

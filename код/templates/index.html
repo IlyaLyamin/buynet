@@ -47,7 +47,11 @@
                     </div>
                 {% endif %}
                 <div class="image">
-                    <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
+                    {% if i.photo != 'default.jpg' %}
+                        <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
+                    {% else %}
+                        <img src="{{url_for('static', filename='img/продукт_по_умолчанию.jpg')}}">
+                    {% endif %}
                 </div>
                 <!-- image -->
                 {% if current_user.is_authenticated and current_user.id != i.author.id %}

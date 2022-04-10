@@ -3,7 +3,7 @@ from flask import make_response, url_for
 
 from utils import save_picture_product, save_picture_account
 
-from data import db_session
+from data import db_session, products_api
 from data.products import Products
 from data.users import User
 
@@ -30,10 +30,16 @@ def buy(id):
     api = Api(merchant_id=1396424,
               secret_key='test')
     checkout = Checkout(api=api)
-    data = {
-        "currency": "RUB",
-        "amount": int(''.join((product.price + '00').split(' ')))
-    }
+    if type(product.price) == int:
+        data = {
+            "currency": "RUB",
+            "amount": int(product.price * 100)
+        }
+    else:
+        data = {
+            "currency": "RUB",
+            "amount": int(''.join((product.price + '00').split(' ')))
+        }
     url = checkout.url(data).get('checkout_url')
     return redirect(url)
 
@@ -93,12 +99,10 @@ def account():
 
 @app.route('/edit_account', methods=['GET', 'POST'])
 def edit_account():
-    print('перешли на страницу')
     form = EditAccountForm()
     if request.method == 'GET':
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(current_user.id == User.id).first()
-        print('получили данные')
         if user:
             form.name_f.data = user.name
             form.surname_f.data = user.surname
@@ -126,7 +130,6 @@ def edit_account():
             return redirect('/account')
         else:
             abort(404)
-    print(form.photo_f.data)
     image_file = url_for('static',
                          filename='img/profile_pics/' + current_user.name + '/account_image/' + current_user.photo)
     return render_template('edit_account.html', title='Редактирование аккаунта', form=form, image_file=image_file)
@@ -168,11 +171,12 @@ def sell_product():
         product = Products()
         product.product = form.product_f.data
         product.price = form.price_f.data
-        product.photo = form.photo_f.data
         product.about = form.about_f.data
         product.user_id = current_user.id
-        photo_file = save_picture_product(form.photo_f.data)
-        product.photo = photo_file
+        print(str(form.photo_f.data))
+        if form.photo_f.data:
+            photo_file = save_picture_product(form.photo_f.data)
+            product.photo = photo_file
         db_sess.add(product)
         db_sess.commit()
         return redirect('/')
@@ -228,6 +232,7 @@ def edit_product(id):
 
 def main():
     db_session.global_init('buynet.sqlite')
+    app.register_blueprint(products_api.blueprint)
     app.run()
 
 
