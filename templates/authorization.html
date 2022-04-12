@@ -1,0 +1,34 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+<nav class="register">
+    <h1>Buynet.com</h1>
+    <div class="advertisement">
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <h2>Авторизация</h2>
+                <div class="row">
+                    <div class="group">
+                        <lable for=''>Почта</lable><br>
+                        {{ form.email_f(class="form-control", type="email") }}<br>
+                        {% for error in form.email_f.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="group"><lable for=''>Пароль</lable><br>
+                        {{ form.password_f(class="form-control", type="password") }}<br>
+                        {% for error in form.password_f.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <p>{{message}}</p>
+                </div>
+                <div><center><button>Войти</button></center></div>
+            </form>
+        </div>
+</nav>
+{% endblock content %}

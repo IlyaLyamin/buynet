@@ -1,0 +1,85 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+<div class="center_account">
+    <div class="account_img">
+        {% if user.photo == 'default.jpg' %}
+            <img src="{{url_for('static', filename='img/аккаунт_по_умолчанию.jpg')}}">
+            <p>Почта - {{ user.email }}</p>
+            <p>Зарегистрирован - {{ date }}</p>
+            <a href="/edit_account"><button>Редактировать аккаунт</button></a>
+        {% else %}
+            <img src="{{ image_file }}">
+            <p>Почта - {{ user.email }}</p>
+            <p>Зарегистрирован - {{ date }}</p>
+            <a href="/edit_account"><button>Редактировать аккаунт</button></a>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="container mt-5">
+        <div class="row">
+            {% for i in user.products %}
+                <div class="product">
+                    {% if i.author.photo != 'default.jpg' %}
+                        <div class="short_user">
+                            <img src="{{ image_file }}"
+                            alt="" style="width:100px; height: 100px;">
+                            <ul>
+                                <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
+                                <li><label>Почта - {{ i.author.email }}</label></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="short_user">
+                            <img src="{{url_for('static', filename='img/аккаунт_по_умолчанию.jpg')}}"
+                            alt="" style="width:100px;">
+                            <ul>
+                                <li><label style="color: blue;font-weight: 700">{{ i.author.name }} {{ i.author.surname }}</label></li>
+                                <li><label>Почта - {{ i.author.email }}</label></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if current_user.id == i.author.id %}
+                        <div id="zatemnenie_1">
+                            <div id="okno">
+                                Вы хотите удалить объявление '{{ i.product }}'?<br>
+                                <a href="/delete_product/{{ i.id }}" class="close">Да</a>
+                                <a href="{{url_for('home')}}" class="close">Нет</a>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h3>{{i.product}}</h3>
+                            <a href="/edit_product/{{ i.id }}"><button>Изменить</button></a>
+                            <a href="#zatemnenie_1"><button>Удалить</button></a>
+                        </div>
+                    {% endif %}
+                    <div class="image">
+                        {% if i.photo != 'default.jpg' %}
+                            <img src="{{url_for('static', filename='img/profile_pics/' + i.author.name + '/products_image/' + i.photo)}}">
+                        {% else %}
+                            <img src="{{url_for('static', filename='img/продукт_по_умолчанию.jpg')}}">
+                        {% endif %}
+                    </div>
+                    <!-- image -->
+                    {% if current_user.is_authenticated and current_user.id != i.author.id %}
+                        <div class="info-price">
+                            <span class="price">{{i.price}} <smal>рублей</smal></span>
+                            <a href="/buy/{{ i.id }}"><button class="buy"><ion-icon name="cart-outline"></ion-icon></button></a>
+                        </div>
+                    {% else %}
+                        <div class="info-price">
+                            <span class="price">{{i.price}} <smal>рублей</smal></span>
+                        </div>
+                    {% endif %}
+                    <div class="about">
+                        <h1>Описание:</h1><br>
+                        <h2>{{ i.about }} </h2>
+                    </div>
+                    <!-- info-->
+                </div>
+                <!-- product -->
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

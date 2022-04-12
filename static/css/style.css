@@ -1,0 +1,491 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+html, body{
+    background: bisque;
+    position: relative;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 16px;
+	line-height: 1.4;
+	color: #000;
+	min-width: 320px;
+	overflow-x: hidden;
+    height: 100%;
+}
+
+
+/* LOGO */
+
+.logo img{
+    float: left;
+    margin-left: 150px;
+    width: 165px;
+    height: 140px;
+}
+
+/* MAIN MENU */
+
+.header{
+    height: 140px;
+    background: linear-gradient(45deg, #122faa, #1919ff, #2a52be);
+}
+
+.main_menu{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 100px;
+}
+
+.main_menu a{
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+}
+
+.main_menu li{
+    list-style: none;
+    margin-right: 10px;
+    width: 140px;
+    height: 50px;
+    margin-top: 2.5%;
+    box-shadow: 10px 10px 10px black;
+    font-family: monospace;
+    border-radius: 100px;
+    text-align: center;
+}
+
+.main_menu li:hover{
+    transition-duration: 0.5s;
+    box-shadow: 15px 15px 30px black;
+}
+
+.main_menu{
+    font-size: 20px;
+}
+
+/* WRAPPER */
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* CONTENT */
+
+.content{
+    flex: 1 0 auto;
+}
+
+.content p{
+    text-align: center;
+    font-size: 80px;
+    font-family: monospace;
+    color: #42aaff;
+}
+
+/* FOOTER */
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    font-size: 15px;
+    font-family: monospace;
+    background: green;
+    flex: 0 0 auto;
+}
+
+/* register */
+
+.register {
+}
+
+.register h1{
+    text-align: center;
+    font-size: 80px;
+    font-family: monospace;
+    color: #42aaff;
+    margin-top: 20px;
+}
+
+/* advertisement */
+
+.advertisement {
+    display: flex;
+}
+
+.advertisement h2{
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #E27D60;
+    text-align: center;
+    font-size: 36px;
+    color: #8b00ff;
+    font-weight: 700;
+}
+
+.advertisement form {
+    margin: 0 auto;
+    background: #41B3A3;
+    max-width: 800px;
+    width: 800px;
+    max-height: 550px;
+    height: 500px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.group {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.group input {
+    margin-top: 0px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    border-radius: 20px/20px;
+    width: 300px;
+    height: 30px;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.group input:focus{
+    border: none;
+    transform: scale(0.95);
+}
+
+.group lable {
+    padding-left: 80px;
+    padding-top: 0px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+button {
+    margin-top: 10px;
+    background: #C5C6C7;
+    height: 50px;
+    width: 180px;
+    border-radius: 30px/30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover{
+    transition-duration: 0.6s;
+    box-shadow: 15px 15px 30px #AFD275;
+    transform: scale(1.06);
+}
+
+.row p {
+    color: black;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+/* Всплывающее окно */
+
+#zatemnenie {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#zatemnenie:target {display: block;}
+
+#zatemnenie_1 {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#zatemnenie_1:target {display: block;}
+
+#okno {
+    width: 500px;
+    height: 100px;
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #0000cc;
+    border-radius: 10px;
+    color: #0000cc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.close {
+    display: inline-block;
+    border: 2px solid #42aaff;
+    border-radius: 20px/20px;
+    width: 100px;
+    color: black;
+    background: #FBEEC1;
+    padding: 0 12px;
+    margin: 20px;
+    text-decoration: none;
+    background: #f2f2f2;
+    font-size: 24px;
+    cursor:pointer;
+    font-weight: 400;
+    box-shadow: 2px 2px 5px black;
+}
+
+.close:hover {
+    background: #FBEEC1;
+    transform: scale(0.95);
+}
+
+/* Лента товаров */
+
+.container {
+    max-width: 1560px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    margin: 30px;
+    outline: 5px #41B3A3 solid;
+    background-color: #41B3A3;
+    width: 700px;
+    height: 750px;
+    border-radius: 20px/20px;
+}
+
+.image img {
+    height: 350px;
+    width: 98%;
+    object-fit: cover;
+    margin-top: 20px;
+    margin-left: 7px;
+    outline: 5px green solid;
+    border-radius: 10px/10px;
+}
+
+.image {
+    margin-bottom: 10px;
+}
+
+.info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.info button {
+    background: green;
+    margin-top: 25px;
+}
+
+.info h3{
+    font-size: 42px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    color: blue;
+}
+
+.info-price {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buy {
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 28px;
+    color: blue;
+    margin-left: 10px;
+}
+
+/* short_user */
+
+.short_user {
+    display: flex;
+}
+
+.short_user img {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px/20px;
+    outline: 4px gray solid;
+}
+
+.short_user ul {
+    margin-top: 18px;
+}
+
+.short_user li {
+    list-style: none;
+    margin-top: 7px;
+}
+
+.short_user label {
+    font-size: 26px;
+    font-weight: 500;
+}
+/* описание */
+
+.about {
+    margin-left: 15px;
+}
+
+.about h1 {
+    font-size: 25px;
+}
+
+.about h2 {
+    margin-top: -20px;
+    margin-left: 20px;
+    font-size: 20px;
+    word-break:break-all;
+}
+
+/* account */
+
+.account_img {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.account_img img {
+    border-radius: 150px/150px;
+    outline: 5px solid gray;
+    width: 300px;
+    height: 300px;
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.account_img button {
+    background: blue;
+    color: white;
+    margin-top: 10px;
+    margin-right: 70px;
+    margin-left: 165px;
+}
+
+.account_img p {
+    font-weight: 700;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* редактирование аккаунта */
+
+.edit_account {
+    display: flex;
+}
+
+.edit_account form {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background: #41B3A3;
+    max-width: 800px;
+    width: 800px;
+    max-height: 900px;
+    height: 900px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+    border-radius: 10px/10px;
+}
+
+.photo {
+    display: flex;
+    height: 200px;
+}
+
+.photo label {
+    margin-top: 77px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: blue;
+}
+
+.photo input {
+    margin-top: 80px;
+    margin-left: 5px;
+    height: 20px;
+}
+
+.photo img {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 313px;
+    outline: 5px gray solid;
+    border-radius: 150px/150px;
+}
+
+.account_input_label {
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 250px;
+    text-align: center;
+}
+
+.account_input_label label {
+    font-size: 24px;
+    font-weight: 700;
+    color: blue;
+}
+
+.account_input_label input {
+    width: 250px;
+    height: 30px;
+    border-radius: 20px/20px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
