@@ -12,6 +12,8 @@ from forms.register_form import RegisterForm
 from forms.authorization_form import AuthorizationForm as AutoForm
 from forms.edit_account_form import EditAccountForm
 
+from waitress import serve
+
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 # оплата
@@ -234,6 +236,7 @@ def main():
     db_session.global_init('buynet.sqlite')
     app.register_blueprint(products_api.blueprint)
     app.run()
+    serve(app, host='0.0.0.0', port=5000)
 
 
 if __name__ == '__main__':
