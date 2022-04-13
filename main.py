@@ -235,7 +235,6 @@ def edit_product(id):
 def main():
     db_session.global_init('buynet.sqlite')
     app.register_blueprint(products_api.blueprint)
-    app.run()
     serve(app, host='0.0.0.0', port=5000)
 
 
