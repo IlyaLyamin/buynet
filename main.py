@@ -175,7 +175,6 @@ def sell_product():
         product.price = form.price_f.data
         product.about = form.about_f.data
         product.user_id = current_user.id
-        print(str(form.photo_f.data))
         if form.photo_f.data:
             photo_file = save_picture_product(form.photo_f.data)
             product.photo = photo_file
@@ -213,6 +212,7 @@ def edit_product(id):
             form.product_f.data = product.product
             form.price_f.data = product.price
             form.about_f.data = product.about
+            form.photo_f.data = product.photo
         else:
             abort(404)
     if form.validate_on_submit():
